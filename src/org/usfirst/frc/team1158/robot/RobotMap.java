@@ -11,12 +11,10 @@ public class RobotMap {
 	public static final int DRIVER_JOYSTICK = 0;
 	
 	public static final int JOYSTICK_LEFT_Y = 1;
-	public static final int JOYSTICK_RIGHT_X = 4;
+	public static final int JOYSTICK_RIGHT_Y = 3;
 		
-	public static int LEFT_FRONT_MOTOR = 0;
-	public static int LEFT_BACK_MOTOR = 1;
-	public static int RIGHT_FRONT_MOTOR = 2;
-	public static int RIGHT_BACK_MOTOR = 3;
+	public static int LEFT = 0;
+	public static int RIGHT = 1;
 	
 	public static final int LEFT_ENCODER_A = 0;
 	public static final int LEFT_ENCODER_B = 1;

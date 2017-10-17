@@ -3,6 +3,8 @@ package org.usfirst.frc.team1158.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -19,10 +21,10 @@ public class Drive extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
-	private SpeedController leftFront;
-	private SpeedController leftBack;
-	private SpeedController rightFront;
-	private SpeedController rightBack;
+	private RobotDrive robotDrive;
+	
+	private SpeedController left;
+	private SpeedController right;
 	
 	private Ultrasonic ultrasonicOne;
 	private Ultrasonic ultrasonicTwo;
@@ -42,11 +44,10 @@ public class Drive extends Subsystem {
     
     public Drive() {
     	
-    	leftFront = new Victor(RobotMap.LEFT_FRONT_MOTOR);
-    	leftBack = new Victor(RobotMap.LEFT_BACK_MOTOR);
-    	rightFront = new Victor(RobotMap.RIGHT_FRONT_MOTOR);
-    	rightBack = new Victor(RobotMap.RIGHT_BACK_MOTOR);
+    	left = new Victor(RobotMap.LEFT);
+    	right = new Victor(RobotMap.RIGHT);
     	
+    	ultrasonicOne = new Ultrasonic(1,1);
     	
     	try {
     	    gyro = new AHRS(SerialPort.Port.kUSB);
@@ -55,6 +56,8 @@ public class Drive extends Subsystem {
                 DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
     	    // TODO Add global variable
     	}
+    	
+    	robotDrive = new RobotDrive(left, right); 
     }
     
     public Shifter getCurrGear() {
@@ -65,6 +68,12 @@ public class Drive extends Subsystem {
 		return currSpeed;
 	}
  
+	public void drive(Joystick joystick) {
+		double leftMove = 1 * joystick.getRawAxis(RobotMap.JOYSTICK_LEFT_Y);
+		double rightMove = 1 * joystick.getRawAxis(RobotMap.JOYSTICK_RIGHT_Y);
+		robotDrive.tankDrive(leftMove, rightMove, true);
+		
+	}
 
 
 	public void initDefaultCommand() {
