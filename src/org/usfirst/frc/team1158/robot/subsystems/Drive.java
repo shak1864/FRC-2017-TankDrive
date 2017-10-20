@@ -48,6 +48,7 @@ public class Drive extends Subsystem {
     	right = new Victor(RobotMap.RIGHT);
     	
     	ultrasonicOne = new Ultrasonic(1,1);
+    	ultrasonicTwo = new Ultrasonic(2,2);
     	
     	try {
     	    gyro = new AHRS(SerialPort.Port.kUSB);
@@ -68,7 +69,7 @@ public class Drive extends Subsystem {
 		return currSpeed;
 	}
  
-	public void drive(Joystick joystick) {
+	public void tankDrive(Joystick joystick) {
 		double leftMove = 1 * joystick.getRawAxis(RobotMap.JOYSTICK_LEFT_Y);
 		double rightMove = 1 * joystick.getRawAxis(RobotMap.JOYSTICK_RIGHT_Y);
 		robotDrive.tankDrive(leftMove, rightMove, true);

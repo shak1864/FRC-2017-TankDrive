@@ -22,4 +22,13 @@ public class RobotMap {
 	public static final int RIGHT_ENCODER_B = 3;
 	
 	public static final int GYRO = 0;
+	
+	public static final int ULTRASONIC_ONE_DIGITAL_INPUT = 4;
+	public static final int ULTRASONIC_TWO_DIGITAL_INPUT = 5;
+	
+	public static final int ULTRASONIC_ONE_TRIGGER_IMPLUSE = 6;
+	public static final int ULTRASONIC_TWO_TRIGGER_IMPLUSE = 7;
+
+
+
 }
